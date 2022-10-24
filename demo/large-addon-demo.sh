@@ -20,7 +20,7 @@
 #
 # speed at which to simulate typing. bigger num = faster
 #
-# TYPE_SPEED=20
+TYPE_SPEED=20
 
 #
 # custom prompt
@@ -43,28 +43,28 @@ echo "Demo: The latest addon-framework supports large size of manifests in an ad
 
 
 echo ""
-pei `echo "There is an exmaple add-on named large-addon \n"`
+echo "There is an exmaple add-on named large-addon \n"
 pe "oc get managedclusteraddons.addon.open-cluster-management.io -n cluster1"
 
 echo ""
-pei `echo "The addon has a manfiestWork and deploys 2 configmaps \n"`
+echo "The addon has a manfiestWork and deploys 2 configmaps \n"
 pe "oc get manifestworks.work.open-cluster-management.io -n cluster1"
 pe "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
 
 echo ""
-pei `echo "Update the env of the add-on controller to trigger controller upgrade \n"`
+echo "Update the env of the add-on controller to trigger controller upgrade \n"
 pe "oc set env -n open-cluster-management deployment/large-addon-controller ADDON_VERSION=2.0"
 
 echo ""
-pei `echo "There are 2 manfiestWorks and deploys 4 configmaps \n"`
+echo "There are 2 manfiestWorks and deploys 4 configmaps \n"
 pe "oc get manifestworks.work.open-cluster-management.io -n cluster1"
 pe "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
 
 echo ""
-pei `echo "Delete the add-on CR  \n"`
+echo "Delete the add-on CR  \n"
 pe "oc delete managedclusteraddons.addon.open-cluster-management.io -n cluster1 large-addon"
 
 echo ""
-pei `echo "The deployed manifests configmaps will be cleaned up too \n"`
+echo "The deployed manifests configmaps will be cleaned up too \n"
 pe "oc get manifestworks.work.open-cluster-management.io -n cluster1"
 pe "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
