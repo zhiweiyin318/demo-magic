@@ -43,38 +43,28 @@ echo "Demo: The latest addon-framework supports large size of manifests in an ad
 
 
 echo ""
-echo "There is an exmaple add-on named large-addon"
-echo ""
+pei `echo "There is an exmaple add-on named large-addon \n"`
 pe "oc get managedclusteraddons.addon.open-cluster-management.io -n cluster1"
 
 echo ""
-echo "The addon has a manfiestWork and deploys 2 configmaps"
-echo ""
+pei `echo "The addon has a manfiestWork and deploys 2 configmaps \n"`
 pe "oc get manifestworks.work.open-cluster-management.io -n cluster1"
+pe "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
 
 echo ""
-pe "oc get configmaps -n open-cluster-management-agent-addon"
-
-echo ""
-echo "Update the env of the add-on controller to trigger controller upgrade"
-echo ""
+pei `echo "Update the env of the add-on controller to trigger controller upgrade \n"`
 pe "oc set env -n open-cluster-management deployment/large-addon-controller ADDON_VERSION=2.0"
 
 echo ""
-echo "There are 2 manfiestWorks and deploys 4 configmaps"
-echo ""
+pei `echo "There are 2 manfiestWorks and deploys 4 configmaps \n"`
 pe "oc get manifestworks.work.open-cluster-management.io -n cluster1"
+pe "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
 
 echo ""
-pe "oc get configmaps -n open-cluster-management-agent-addon"
-
-echo ""
-echo "delete the add-on CR to delete the manifests and clean up the configmaps"
-echo ""
+pei `echo "Delete the add-on CR  \n"`
 pe "oc delete managedclusteraddons.addon.open-cluster-management.io -n cluster1 large-addon"
 
 echo ""
-pe "oc get manifestworks.work.open-cluster-management.io -n cluster1 -w"
-
-echo ""
-pe "oc get configmaps -n open-cluster-management-agent-addon"
+pei `echo "The deployed manifests configmaps will be cleaned up too \n"`
+pe "oc get manifestworks.work.open-cluster-management.io -n cluster1"
+pe "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
