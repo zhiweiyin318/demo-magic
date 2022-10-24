@@ -39,32 +39,32 @@ clear
 cmd
 
 echo ""
-echo "Demo: The latest addon-framework supports large size of manifests in an add-on."
+p "Demo: The latest addon-framework supports large size of manifests in an add-on."
 
 
 echo ""
-echo "There is an exmaple add-on named large-addon "
-pe "oc get managedclusteraddons.addon.open-cluster-management.io -n cluster1"
+p "There is an exmaple add-on named large-addon "
+pei "oc get managedclusteraddons.addon.open-cluster-management.io -n cluster1"
 
 echo ""
-echo "The addon has a manfiestWork and deploys 2 configmaps "
-pe "oc get manifestworks.work.open-cluster-management.io -n cluster1"
-pe "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
+p "The addon has a manfiestWork and deploys 2 configmaps "
+pei "oc get manifestworks.work.open-cluster-management.io -n cluster1"
+pei "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
 
 echo ""
-echo "Update the env of the add-on controller to trigger controller upgrade "
-pe "oc set env -n open-cluster-management deployment/large-addon-controller ADDON_VERSION=2.0"
+p "Update the env of the add-on controller to trigger controller upgrade "
+pei "oc set env -n open-cluster-management deployment/large-addon-controller ADDON_VERSION=2.0"
 
 echo ""
-echo "There are 2 manfiestWorks and deploys 4 configmaps "
-pe "oc get manifestworks.work.open-cluster-management.io -n cluster1"
-pe "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
+p "There are 2 manfiestWorks and deploys 4 configmaps "
+pei "oc get manifestworks.work.open-cluster-management.io -n cluster1"
+pei "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
 
 echo ""
-echo "Delete the add-on CR  "
-pe "oc delete managedclusteraddons.addon.open-cluster-management.io -n cluster1 large-addon"
+p "Delete the add-on CR  "
+pei "oc delete managedclusteraddons.addon.open-cluster-management.io -n cluster1 large-addon"
 
 echo ""
-echo "The deployed manifests configmaps will be cleaned up too "
-pe "oc get manifestworks.work.open-cluster-management.io -n cluster1"
-pe "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
+p "The deployed manifests configmaps will be cleaned up too "
+pei "oc get manifestworks.work.open-cluster-management.io -n cluster1"
+pei "oc get configmaps -n open-cluster-management-agent-addon -l app=large-addon"
