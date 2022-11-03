@@ -46,9 +46,9 @@ echo ""
 p "Step 1: Import the ACM Hub cluster in hosted mode."
 
 echo ""
-pei "cat \"Step 1.1: Add hosted annotations.\""
-pei "cat \"Step 1.2: Disable all addons.\""
-pei "cat \"Step 1.3: Import by kubeconfig mode.\""
+pei "echo \"Step 1.1: Add hosted annotations.\""
+pei "echo \"Step 1.2: Disable all addons.\""
+pei "echo \"Step 1.3: Import by kubeconfig mode.\""
 
 echo ""
 pei "oc get mcl"
