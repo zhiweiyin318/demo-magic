@@ -43,10 +43,14 @@ p "Demo: Import an existing ACM Hub cluster with local-cluster as a regional hub
 
 
 echo ""
-p "Step 1: Import the ACM Hub cluster in hosted mode. "
+p "Step 1: Import the ACM Hub cluster in hosted mode."
 
 echo ""
+pei "cat \"Step 1.1: Add hosted annotations.\""
+pei "cat \"Step 1.2: Disable all addons.\""
+pei "cat \"Step 1.3: Import by kubeconfig mode.\""
 
+echo ""
 pei "oc get mcl"
 
 pei "oc get klusterlet"
@@ -56,37 +60,42 @@ p "Step 2: Enable the work-manager addon in hosted mode."
 echo ""
 
 p "Step 2.1: Create work-manager addon CR."
-pei "cat work-manager-addon.yaml"
-pei "oc apply -f work-manager-addon.yaml"
+echo ""
+pe "cat work-manager-addon.yaml"
+pe "oc apply -f work-manager-addon.yaml"
 
 p "Step 2.2: Create a kubeconfig secret for the work-manager addon."
-pei "oc create secret generic work-manager-managed-kubeconfig --from-file=kubeconfig=./kubeconfig-hub1 -n open-cluster-management-hub1-addon-workmanager"
+echo ""
+pe "oc create secret generic work-manager-managed-kubeconfig --from-file=kubeconfig=./kubeconfig-hub1 -n open-cluster-management-hub1-addon-workmanager"
 
-pei "oc get managedclusteraddons -n hub1"
+pe "oc get managedclusteraddons -n hub1"
 
 echo ""
 p "Step 3: Eanble multicluster-global-hub-controller addon" 
 
 echo ""
-p "The multicluster-global-hub-controller addon CR will be created in default mode automaticlly."
+p "The multicluster-global-hub-controller addon CR will be created in default mode automatically by default."
 
+echo ""
 pei "oc get managedclusteraddons -n hub1"
 
 pei "oc --kubeconfig=kubeconfig-hub1 get pods -n open-cluster-management-global-hub-system"
 
 echo ""
-p "We can also enable the multicluster-global-hub-controller addon in hosted mode."
+p "We can also enable the multicluster-global-hub-controller addon in hosted mode via a label."
+echo ""
 
-pei "oc label mcl hub1 global-hub.open-cluster-management.io/agent-deploy-mode=Hosted --overwrite"
+pe "oc label mcl hub1 global-hub.open-cluster-management.io/agent-deploy-mode=Hosted --overwrite"
 
-pei "oc get managedclusteraddons -n hub1 multicluster-global-hub-controller -o yaml"
+pe "oc get managedclusteraddons -n hub1 multicluster-global-hub-controller -o yaml"
 
 echo ""
-p "Create a kubeconfig secret for the HoH addon."
+p "Need to create a kubeconfig secret for the HoH addon."
 
-pei "oc create secret generic managed-kubeconfig-secret --from-file=kubeconfig=./kubeconfig-hub1 -n open-cluster-management-hub1-hoh-addon"
+echo ""
+pe "oc create secret generic managed-kubeconfig-secret --from-file=kubeconfig=./kubeconfig-hub1 -n open-cluster-management-hub1-hoh-addon"
 
-pei "oc get managedclusteraddons -n hub1"
-pei "oc get pods -n open-cluster-management-hub1-hoh-addon"
+pe "oc get managedclusteraddons -n hub1"
+pe "oc get pods -n open-cluster-management-hub1-hoh-addon"
 
 
