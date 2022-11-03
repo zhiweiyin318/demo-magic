@@ -61,17 +61,19 @@ echo ""
 
 p "Step 2.1: Create work-manager addon CR."
 echo ""
-pe "cat work-manager-addon.yaml"
+pei "cat work-manager-addon.yaml"
 pe "oc apply -f work-manager-addon.yaml"
 
+echo ""
 p "Step 2.2: Create a kubeconfig secret for the work-manager addon."
 echo ""
 pe "oc create secret generic work-manager-managed-kubeconfig --from-file=kubeconfig=./kubeconfig-hub1 -n open-cluster-management-hub1-addon-workmanager"
 
 pe "oc get managedclusteraddons -n hub1"
+pe "oc get pods -n open-cluster-management-hub1-addon-workmanager"
 
 echo ""
-p "Step 3: Eanble multicluster-global-hub-controller addon" 
+p "Step 3: Eanble multicluster-global-hub-controller addon." 
 
 echo ""
 p "The multicluster-global-hub-controller addon CR will be created in default mode automatically by default."
