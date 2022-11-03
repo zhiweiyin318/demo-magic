@@ -1,0 +1,9 @@
+apiVersion: addon.open-cluster-management.io/v1alpha1
+kind: ManagedClusterAddOn
+metadata:
+  name: work-manager
+  namespace: hub1
+  annotations:
+    addon.open-cluster-management.io/hosting-cluster-name: local-cluster
+spec:
+  installNamespace: open-cluster-management-hub1-addon-workmanager
