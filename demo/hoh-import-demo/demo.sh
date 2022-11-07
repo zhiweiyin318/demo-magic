@@ -112,5 +112,7 @@ pe "oc --kubeconfig=kubeconfig-hub create secret generic managed-kubeconfig-secr
 p "#### Check the add-on and agent pod on the global hub cluster."
 pe "oc --kubeconfig=kubeconfig-hub get managedclusteraddons -n hub2"
 pe "oc --kubeconfig=kubeconfig-hub get pods -n open-cluster-management-hub2-hoh-addon"
+p ""
+p "# Check the regional hub clusters on the ACM console."
 
-
+p ""
