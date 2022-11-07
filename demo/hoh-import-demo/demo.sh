@@ -94,9 +94,9 @@ p ""
 p "### Option 1: The multicluster-global-hub-controller addon CR will be created in default mode automatically by default."
 
 p ""
-pei "oc --kubeconfig=kubeconfig-hub get managedclusteraddons -n hub1"
+pei "oc --kubeconfig=kubeconfig-hub get managedclusteraddons -n hub2"
 
-pei "oc --kubeconfig=kubeconfig-hub1 get pods -n open-cluster-management-global-hub-system"
+pei "oc --kubeconfig=kubeconfig-hub2 get pods -n open-cluster-management-global-hub-system"
 
 p ""
 p "### Option 2: We can also enable the multicluster-global-hub-controller addon in hosted mode via a label."
